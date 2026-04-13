@@ -4,6 +4,7 @@ import { computeScores } from './utils/scoringModel.js'
 import WeightSliders from './components/WeightSliders.jsx'
 import ResultsTable from './components/ResultsTable.jsx'
 import IndustryChart from './components/IndustryChart.jsx'
+import ScoreHistogram from './components/ScoreHistogram.jsx'
 import csvText from './data/sheet.csv?raw'
 
 const WEIGHT_COLUMNS = [
@@ -122,40 +123,44 @@ export default function App() {
 
         {parsedData && (
           <>
-            <div className="top-panels">
-              <WeightSliders
-                weightColumns={WEIGHT_COLUMNS}
-                weights={weights}
-                defaultWeights={DEFAULT_WEIGHTS}
-                onWeightsChange={handleWeightsChange}
-                onScore={handleScore}
-              />
-              <IndustryChart scoredRows={scoredRows} />
-            </div>
-
-            <div className="methodology-note">
+            {/* 1. Methodology */}
+            <div className="methodology-text">
               <h3 className="methodology-title">How the WSJ Pro Score Is Calculated</h3>
               <p>
-                The WSJ Pro Bankruptcy Score is a weighted composite of up to five financial indicators:
-                Z-Score, Quick Ratio, Receivables to Revenue, FSS Score, and FSS Weekly Change.
-                Each indicator is normalized to a 0–100 scale using min-max normalization — the
-                company with the highest value in a given metric scores 100, the lowest scores 0,
-                and all others are scaled proportionally between them.
+                The WSJ Pro Bankruptcy Score is a weighted composite of up to five financial
+                indicators: Z-Score, Quick Ratio, Receivables to Revenue, FSS Score, and FSS
+                Weekly Change. Each indicator is normalized to a 0–100 scale using min-max
+                normalization — the company with the highest value in a given metric scores 100,
+                the lowest scores 0, and all others are scaled proportionally between them.
               </p>
               <p>
-                The final score is computed as the weighted sum of these normalized values, where
-                the weights are set by the sliders above and must total 100%. A higher WSJ Pro Score
-                indicates greater relative bankruptcy risk within this dataset.
+                The final score is the weighted sum of these normalized values, where the weights
+                are set by the sliders below and must total 100%. A higher WSJ Pro Score indicates
+                greater relative bankruptcy risk within this dataset.
               </p>
               <p className="methodology-missing">
                 <strong>Missing values:</strong> If a company is missing data for one or more
-                indicators, those indicators contribute 0 to that company's score for those metrics.
-                This means companies with incomplete data may score artificially low — they should be
-                interpreted with caution and compared primarily against other companies with similar
-                data availability.
+                indicators, those indicators contribute 0 to that company's score. Companies with
+                incomplete data may score artificially low and should be interpreted with caution.
               </p>
             </div>
 
+            {/* 2. Sliders */}
+            <WeightSliders
+              weightColumns={WEIGHT_COLUMNS}
+              weights={weights}
+              defaultWeights={DEFAULT_WEIGHTS}
+              onWeightsChange={handleWeightsChange}
+              onScore={handleScore}
+            />
+
+            {/* 3. Histogram */}
+            <ScoreHistogram scoredRows={scoredRows} />
+
+            {/* 4. Industry averages */}
+            <IndustryChart scoredRows={scoredRows} />
+
+            {/* 5. Full table */}
             <ResultsTable
               rows={parsedData.rows}
               displayColumns={displayColumns}

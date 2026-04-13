@@ -368,51 +368,62 @@ body {
   background: var(--gray-100);
 }
 
-/* ── Side-by-side top panels ── */
-.top-panels {
-  display: grid;
-  grid-template-columns: 3fr 2fr;
-  gap: 1.25rem;
-  align-items: start;
-}
-
-@media (max-width: 900px) {
-  .top-panels {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* ── Methodology note ── */
-.methodology-note {
-  background: white;
-  border: 1px solid var(--gray-200);
-  border-left: 3px solid var(--wsj-pro-blue);
-  padding: 1.1rem 1.4rem;
+/* ── Methodology text (plain, centered) ── */
+.methodology-text {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
+  padding: 0.5rem 0;
 }
 
 .methodology-title {
   font-family: var(--serif);
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: 700;
   color: var(--wsj-black);
   margin-bottom: 0.1rem;
 }
 
-.methodology-note p {
+.methodology-text p {
   font-size: 12.5px;
   color: var(--gray-600);
-  line-height: 1.6;
+  line-height: 1.65;
 }
 
 .methodology-missing {
   background: #fffbeb;
   border: 1px solid #fde68a;
-  padding: 0.6rem 0.9rem;
-  font-size: 12.5px !important;
-  color: var(--gray-800) !important;
+  padding: 0.55rem 0.9rem;
+  font-size: 12.5px;
+  color: var(--gray-800);
+  text-align: left;
+}
+
+/* ── Histogram ── */
+.histogram-panel {
+  background: white;
+  border: 1px solid var(--gray-200);
+  padding: 1.25rem 1.5rem 0.5rem;
+}
+
+/* ── Download button row ── */
+.download-btn-row {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 0.5rem;
+}
+
+/* ── Industry table footnote ── */
+.industry-footnote {
+  font-size: 11px;
+  color: var(--gray-400);
+  font-style: italic;
+  padding: 6px 12px;
+  text-align: left;
+  border-top: 1px solid var(--gray-200);
 }
 
 /* ── Chart ── */
