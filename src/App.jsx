@@ -125,9 +125,9 @@ export default function App() {
           <>
             {/* 1. Methodology */}
             <div className="methodology-text">
-              <h3 className="methodology-title">How the WSJ Pro Score Is Calculated</h3>
+              <h3 className="methodology-title">WSJ Pro Bankruptcy Risk Score</h3>
               <p>
-                The WSJ Pro Bankruptcy Score is a weighted composite of up to five financial
+                The WSJ Pro Bankruptcy Risk Score is a weighted composite of up to five financial
                 indicators: Z-Score, Quick Ratio, Receivables to Revenue, FSS Score, and FSS
                 Weekly Change. Each indicator is normalized to a 0–100 scale using min-max
                 normalization — the company with the highest value in a given metric scores 100,

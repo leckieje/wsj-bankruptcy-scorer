@@ -55,13 +55,23 @@ export default function ResultsTable({ rows, displayColumns, scoredRows }) {
       </div>
       <div className="table-wrapper">
         <table className="results-table">
+          <colgroup>
+            {isScored && <col style={{ width: '2rem' }} />}
+            {colsBefore.map((col) => (
+              <col key={col} style={col === 'Company' ? { width: '200px' } : {}} />
+            ))}
+            {isScored && <col style={{ width: '120px' }} />}
+            {colsAfter.map((col) => <col key={col} />)}
+          </colgroup>
           <thead>
             <tr>
-              {isScored && <th className="rank-col">#</th>}
+              {isScored && <th className="rank-col sticky-rank">#</th>}
               {colsBefore.map((col) => (
-                <th key={col}>{col === 'Market Capitalization' ? 'Market Capitalization ($M)' : col}</th>
+                <th key={col} className={col === 'Company' ? 'sticky-company' : ''}>
+                  {col === 'Market Capitalization' ? 'Market Capitalization ($M)' : col}
+                </th>
               ))}
-              {isScored && <th className="score-col">WSJ Pro Score</th>}
+              {isScored && <th className="sticky-score">WSJ Pro Score</th>}
               {colsAfter.map((col) => (
                 <th key={col}>{col === 'Market Capitalization' ? 'Market Capitalization ($M)' : col}</th>
               ))}
@@ -70,12 +80,16 @@ export default function ResultsTable({ rows, displayColumns, scoredRows }) {
           <tbody>
             {data.map((row, i) => (
               <tr key={i} className={isScored && i < 3 ? 'top-rank' : ''}>
-                {isScored && <td className="rank-col">{i + 1}</td>}
+                {isScored && <td className="rank-col sticky-rank">{i + 1}</td>}
                 {colsBefore.map((col) => (
-                  <td key={col}>{formatCell(col, row[col], isScored)}</td>
+                  <td key={col} className={col === 'Company' ? 'sticky-company' : ''}>
+                    {formatCell(col, row[col], isScored)}
+                  </td>
                 ))}
                 {isScored && (
-                  <td className="score-col score-value">{row._score.toFixed(2)}</td>
+                  <td className="sticky-score score-value">
+                    {row._score.toFixed(2)}
+                  </td>
                 )}
                 {colsAfter.map((col) => (
                   <td key={col}>{formatCell(col, row[col], isScored)}</td>

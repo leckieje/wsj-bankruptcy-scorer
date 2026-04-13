@@ -29,7 +29,7 @@ export default function IndustryChart({ scoredRows }) {
 
   return (
     <div className="chart-panel">
-      <h2 className="chart-title">Average WSJ Pro Score by Industry</h2>
+      <h2 className="chart-title">Average Score by Industry</h2>
       <table className="results-table industry-table">
         <thead>
           <tr>

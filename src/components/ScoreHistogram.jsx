@@ -31,7 +31,7 @@ export default function ScoreHistogram({ scoredRows }) {
 
   return (
     <div className="histogram-panel">
-      <h2 className="chart-title">WSJ Pro Score Distribution</h2>
+      <h2 className="chart-title">Score Distribution</h2>
       <ResponsiveContainer width="100%" height={220}>
         <BarChart data={data} margin={{ top: 4, right: 16, left: 0, bottom: 24 }}>
           <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e0e0e0" />

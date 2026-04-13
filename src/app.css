@@ -381,10 +381,10 @@ body {
 
 .methodology-title {
   font-family: var(--serif);
-  font-size: 1rem;
+  font-size: 1.6rem;
   font-weight: 700;
   color: var(--wsj-black);
-  margin-bottom: 0.1rem;
+  margin-bottom: 0.25rem;
 }
 
 .methodology-text p {
@@ -556,6 +556,60 @@ body {
   text-align: center;
   padding: 2rem;
   font-style: italic;
+}
+
+/* ── Sticky columns ── */
+.sticky-rank {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  background: white !important;
+}
+.sticky-company {
+  position: sticky;
+  left: 32px;
+  z-index: 2;
+  width: 200px;
+  min-width: 200px;
+  max-width: 200px;
+  background: white !important;
+  box-shadow: 3px 0 5px -1px rgba(0,0,0,0.1);
+}
+/* score col left = rank(32) + company(200) = 232px */
+.sticky-score {
+  position: sticky;
+  left: 232px;
+  z-index: 2;
+  width: 120px;
+  min-width: 120px;
+  background: var(--score-bg) !important;
+  box-shadow: -2px 0 0 0 var(--score-border), 3px 0 5px -1px rgba(0,0,0,0.1);
+}
+
+/* Header overrides */
+.results-table thead .sticky-rank,
+.results-table thead .sticky-company {
+  background: var(--gray-100) !important;
+  z-index: 3;
+}
+.results-table thead .sticky-score {
+  background: var(--gray-100) !important;
+  z-index: 3;
+}
+
+/* Top-ranked row overrides */
+.results-table .top-rank .sticky-rank,
+.results-table .top-rank .sticky-company {
+  background: #fff8f0 !important;
+}
+.results-table .top-rank .sticky-score {
+  background: #fffbeb !important;
+}
+
+/* Score column — same style in both tables */
+.score-col {
+  background: var(--score-bg) !important;
+  box-shadow: -2px 0 0 0 var(--score-border);
 }
 
 @media (max-width: 640px) {
