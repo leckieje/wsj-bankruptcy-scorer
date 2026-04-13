@@ -478,11 +478,13 @@ body {
   overflow-x: auto;
   border: 1px solid var(--gray-200);
   background: white;
+  isolation: isolate;
 }
 
 .results-table {
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
   font-size: 12px;
 }
 
@@ -583,7 +585,8 @@ body {
   width: 120px;
   min-width: 120px;
   background: var(--score-bg) !important;
-  box-shadow: -2px 0 0 0 var(--score-border), 3px 0 5px -1px rgba(0,0,0,0.1);
+  border-left: 2px solid var(--score-border) !important;
+  box-shadow: 3px 0 5px -1px rgba(0,0,0,0.1);
 }
 
 /* Header overrides */
@@ -609,7 +612,7 @@ body {
 /* Score column — same style in both tables */
 .score-col {
   background: var(--score-bg) !important;
-  box-shadow: -2px 0 0 0 var(--score-border);
+  border-left: 2px solid var(--score-border) !important;
 }
 
 @media (max-width: 640px) {
